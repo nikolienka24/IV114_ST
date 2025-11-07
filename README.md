@@ -31,8 +31,6 @@ These data originate from **SpaceRanger**-processed outputs and correspond to mu
 ## Running notebook from command line
 To run the `.ipynb` notebook from the command line with custom input values, follow these steps:
 
----
-
 ### 1. Register your virtual environment as a Jupyter kernel
 
 First, activate your virtual environment and install the required packages:
@@ -70,29 +68,26 @@ It combines **self-organizing maps (SOMs)** — an unsupervised neural network a
 SOMDE is a spatial transcriptomics analysis tool that uses Self-Organizing Maps (SOM) to detect spatially variable genes efficiently.  
 This part helps you create a reliable environment to reproduce SOMDE results with compatible package versions.
 
-### Environment setup GUIDE
+Link to the SOMDE github: **[SOMDE](https://github.com/zhanglabtools/SOMDE)**
 
-This guide explains how to set up a Python virtual environment and install all required dependencies to run **[SOMDE](https://github.com/zhanglabtools/SOMDE)** (Self-Organizing Map for Differential Expression).
-**Tested on:** Python **3.9**
+### Environment Setup Guide
 
-### Step 1: Create and Activate a Virtual Environment
+**Tested with:** Python **3.9**  
+
+It is recommended to run this notebook within an isolated virtual environment to ensure all required dependencies are correctly installed and to avoid conflicts with other Python packages.
+
+### Required Libraries and Versions
+
+Please make sure the following libraries are installed with the specified versions:
+
+- `numpy` 1.21.6  
+- `pandas` 1.3.5  
+- `scipy` 1.7.3  
+- `somde`
+
+Alternatively, you can configure your virtual environment with the provided `requirements.txt` file:
 
 ```bash
-# Create a virtual environment
-python -m venv somde-env
-
-# Activate it
-source somde-env/bin/activate      # On macOS/Linux
-# OR
-somde-env\Scripts\activate         # On Windows
-```
-
-### Step 2: make sure you have all libraries in correct versions
-* numpy 1.21.6
-* pandas 1.3.5
-* scipy 1.7.3
-* **somde**
-``` bash
 pip install -r SOMDE/requirements.txt
-```
+
 
