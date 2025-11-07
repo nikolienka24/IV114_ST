@@ -33,22 +33,15 @@ These data originate from **SpaceRanger**-processed outputs and correspond to mu
 **SOMDE (Self-Organizing Map for Differential Expression)** is a computational method designed to identify **spatially variable genes (SVGs)** from spatial transcriptomics data.  
 It combines **self-organizing maps (SOMs)** — an unsupervised neural network algorithm — with statistical modeling to efficiently detect genes that exhibit spatial expression patterns across tissue sections.  
 
----
-
-### Environment setup GUIDE
-
-This guide explains how to set up a Python virtual environment and install all required dependencies to run **[SOMDE](https://github.com/zhanglabtools/SOMDE)** (Self-Organizing Map for Differential Expression).
-
----
-
 ### Overview
 
 SOMDE is a spatial transcriptomics analysis tool that uses Self-Organizing Maps (SOM) to detect spatially variable genes efficiently.  
 This part helps you create a reliable environment to reproduce SOMDE results with compatible package versions.
 
-**Tested on:** Python **3.9**
+### Environment setup GUIDE
 
----
+This guide explains how to set up a Python virtual environment and install all required dependencies to run **[SOMDE](https://github.com/zhanglabtools/SOMDE)** (Self-Organizing Map for Differential Expression).
+**Tested on:** Python **3.9**
 
 ### Step 1: Create and Activate a Virtual Environment
 
