@@ -16,6 +16,7 @@ In this project, we implement a full analysis workflow that includes:
 3. **SOMDE** — applying *Self-Organizing Map for Differential Expression* to efficiently identify spatially variable genes.
 4. **SpatialDE** — performing statistical modeling to detect to efficiently identify spatially variable genes.
 
+---
 
 ## Data Description
 
@@ -24,6 +25,37 @@ The spatial transcriptomics datasets used in this project are publicly available
 🔗 **Dataset source:** [https://zenodo.org/records/7760264](https://zenodo.org/records/7760264)
 
 These data originate from **SpaceRanger**-processed outputs and correspond to multiple biological replicates and samples.
+
+---
+
+## Running notebook from command line
+To run the `.ipynb` notebook from the command line with custom input values, follow these steps:
+
+---
+
+### 1. Register your virtual environment as a Jupyter kernel
+
+First, activate your virtual environment and install the required packages:
+
+```bash
+source <your_venv_name>/bin/activate   # OPTIONAL: Activate your virtual environment
+pip install ipykernel jupyter
+python -m ipykernel install --user --name=iv114_venv
+```
+
+### 2. Install PAPERMILL library
+```bash
+pip install papermill
+```
+
+Example:
+```bash
+papermill data_overview/notebook.ipynb data_overview.results.ipynb \
+  -k iv114_venv \
+  -p input "data/SN048_A121573_Rep1" \
+  -p show_gene "FAM41C"
+
+```
 
 ## Quality Control
 
