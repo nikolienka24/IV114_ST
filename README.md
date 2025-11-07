@@ -89,5 +89,4 @@ Alternatively, you can configure your virtual environment with the provided `req
 
 ```bash
 pip install -r SOMDE/requirements.txt
-
-
+```
