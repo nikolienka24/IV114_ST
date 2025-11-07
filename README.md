@@ -2,14 +2,39 @@
 **Work done for IV114 course at FI MUNI fall semester 2025**
 
 ## Introduction
+This project focuses on the analysis of **Spatial Transcriptomics (ST)** data to identify **Spatially Variable Genes (SVGs)**.
 
-## Data
+---
+
+## Project Overview
+
+Spatial Transcriptomics allows researchers to measure gene expression while preserving spatial context within tissues.  
+In this project, we implement a full analysis workflow that includes:
+
+1. **Data visualization**
+2. **Quality Control (QC)** + filtering out low-quality spots
+3. **SOMDE** — applying *Self-Organizing Map for Differential Expression* to efficiently identify spatially variable genes.
+4. **SpatialDE** — performing statistical modeling to detect to efficiently identify spatially variable genes.
+
+
+## Data Description
+
+The spatial transcriptomics datasets used in this project are publicly available from **Zenodo**:
+
+🔗 **Dataset source:** [https://zenodo.org/records/7760264](https://zenodo.org/records/7760264)
+
+These data originate from **SpaceRanger**-processed outputs and correspond to multiple biological replicates and samples.
 
 ## Quality Control
 
 ## Identification of SVGd with SpatialDE
 
 ## Identification of SVGs with SOMDE
+**SOMDE (Self-Organizing Map for Differential Expression)** is a computational method designed to identify **spatially variable genes (SVGs)** from spatial transcriptomics data.  
+It combines **self-organizing maps (SOMs)** — an unsupervised neural network algorithm — with statistical modeling to efficiently detect genes that exhibit spatial expression patterns across tissue sections.  
+
+---
+
 ### Environment setup GUIDE
 
 This guide explains how to set up a Python virtual environment and install all required dependencies to run **[SOMDE](https://github.com/zhanglabtools/SOMDE)** (Self-Organizing Map for Differential Expression).
