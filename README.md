@@ -31,8 +31,6 @@ These data originate from **SpaceRanger**-processed outputs and correspond to mu
 ## Running notebook from command line
 To run the `.ipynb` notebook from the command line with custom input values, follow these steps:
 
----
-
 ### 1. Register your virtual environment as a Jupyter kernel
 
 First, activate your virtual environment and install the required packages:
