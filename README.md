@@ -1,2 +1,2 @@
 # IV114_ST
-Spatial transcriptomics projct on IV114 course , FI MUNI fall semester 2025
+Spatial transcriptomics project, IV114 course at FI MUNI fall semester 2025
