@@ -48,7 +48,7 @@ pip install papermill
 
 Example:
 ```bash
-papermill data_overview/notebook.ipynb data_overview.results.ipynb \
+papermill data_overview.ipynb data_overview.results.ipynb \
   -k iv114_venv \
   -p input "data/SN048_A121573_Rep1" \
   -p show_gene "FAM41C"
