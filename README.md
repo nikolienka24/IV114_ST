@@ -64,7 +64,7 @@ This step removes potential artifacts caused by low sequencing depth, high mitoc
 During this step, the dataset was loaded using **`scanpy.read_visium`**, and several quality metrics were computed to evaluate spot quality.  
 Spots and genes not meeting defined thresholds were filtered out to improve data reliability and minimize noise in spatial analyses.
 
-The following filtering criteria were applied:
+The following filtering criteria were applied (default thresholds can be adjusted by the user according to dataset characteristics):
 
 - Spots with **total counts below 1000** were removed.  
 - Spots with **fewer than 200 detected genes** were removed.  
