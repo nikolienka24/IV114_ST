@@ -52,13 +52,12 @@ papermill data_overview.ipynb data_overview.results.ipynb \
   -k iv114_venv \
   -p input "data/SN048_A121573_Rep1" \
   -p show_gene "FAM41C"
+---
 
 ```
 ## Quality Control
 **Quality Control (QC)** ensures that only high-quality spots and reliably expressed genes are included in downstream analyses.  
 This step removes potential artifacts caused by low sequencing depth, high mitochondrial gene content, or low transcript counts.
-
----
 
 ### Overview
 During this step, the dataset was loaded using **`scanpy.read_visium`**, and several quality metrics were computed to evaluate spot quality.  
@@ -89,13 +88,9 @@ The filtered dataset was saved as:
 ## Identification of SVGs with SpatialDE
 **SpatialDE** is a statistical framework designed to identify **Spatially Variable Genes (SVGs)** — genes whose expression levels exhibit significant spatial patterns across tissue sections.
 
----
-
 ### Overview
 SpatialDE applies **Gaussian Process regression** to model gene expression as a function of spatial coordinates (x, y).  
 For each gene, it compares a **spatial model** against a **non-spatial model** and performs a **likelihood ratio test** to evaluate whether spatial variation is statistically significant.
-
----
 
 ### Workflow
 1. **Input preparation:**  
@@ -110,8 +105,6 @@ For each gene, it compares a **spatial model** against a **non-spatial model** a
 4. **Visualization:**  
    The most significant SVGs were visualized as spatial expression maps to confirm biologically meaningful patterns.
 
----
-
 ### Implementation
 SpatialDE was implemented in Python using the official package available at:  
 **[SpatialDE GitHub Repository](https://github.com/Teichlab/SpatialDE)**
@@ -124,7 +117,6 @@ SpatialDE was implemented in Python using the official package available at:
 It is recommended to preselect **highly variable genes** before running SpatialDE to improve computational efficiency on large datasets.
 
 ---
-
 
 ## Identification of SVGs with SOMDE
 **SOMDE (Self-Organizing Map for Differential Expression)** is a computational method designed to identify **spatially variable genes (SVGs)** from spatial transcriptomics data.  
