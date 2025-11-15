@@ -139,13 +139,14 @@ It is recommended to run this notebook within an isolated virtual environment to
 
 Please make sure the following libraries are installed with the specified versions:
 
-- `numpy` 1.21.6  
-- `pandas` 1.3.5  
-- `scipy` 1.7.3  
+- `numpy`  
+- `pandas`  
+- `scipy` 
+- `somoclu`
 - `somde`
 
-Alternatively, you can configure your virtual environment with the provided `requirements.txt` file:
+Alternatively, you can configure your **conda** virtual environment with the provided `somde-environment.yml` file:
 
 ```bash
-pip install -r SOMDE/requirements.txt
+conda env create -f somde-environment.yml
 ```
