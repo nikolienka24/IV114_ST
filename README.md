@@ -148,5 +148,5 @@ Please make sure the following libraries are installed with the specified versio
 Alternatively, you can configure your **conda** virtual environment with the provided `somde-environment.yml` file:
 
 ```bash
-conda env create -f somde-env.yml
+conda env create -f somde_x86.yml
 ```
