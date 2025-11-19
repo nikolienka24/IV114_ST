@@ -3,7 +3,6 @@
 
 ## Introduction
 This project focuses on the analysis of **Spatial Transcriptomics (ST)** data to identify **Spatially Variable Genes (SVGs)**.
-
 ---
 
 ## Project Overview
@@ -11,9 +10,9 @@ This project focuses on the analysis of **Spatial Transcriptomics (ST)** data to
 Spatial Transcriptomics allows researchers to measure gene expression while preserving spatial context within tissues.  
 In this project, we implement a full analysis workflow that includes:
 
-1. **Data visualization**
-2. **Quality Control (QC)** + filtering out low-quality spots
-3. **SOMDE** — applying *Self-Organizing Map for Differential Expression* to efficiently identify spatially variable genes.
+1. **Data visualization** (Python >3.11 is required)
+2. **Quality Control (QC)** + filtering out low-quality spots (Python >3.11 is required)
+3. **SOMDE** — applying *Self-Organizing Map for Differential Expression* to efficiently identify spatially variable genes. (Please refer to the *SOMDE Analysis* section for proper virtual environment setup.)
 4. **SpatialDE** — performing statistical modeling to detect to efficiently identify spatially variable genes.
 
 ---
