@@ -1,8 +1,10 @@
 # IV114 Spatial Transcriptomics Project
-**Work done for IV114 course at FI MUNI fall semester 2025**
+**Work completed for the IV114 course at FI MUNI — Fall Semester 2025**
 
 ## Introduction
-This project focuses on the analysis of **Spatial Transcriptomics (ST)** data to identify **Spatially Variable Genes (SVGs)**.
+
+This project focuses on the analysis of **Spatial Transcriptomics (ST)** data with the goal of **identifying Spatially Variable Genes (SVGs)**. A complete analysis workflow is implemented, including data visualization, quality control, and two independent SVG detection methods (SOMDE and SpatialDE).
+
 ---
 
 ## Project Overview
@@ -28,7 +30,7 @@ These data originate from **SpaceRanger**-processed outputs and correspond to mu
 ---
 
 ## Running notebook from command line
-To run the `.ipynb` notebook from the command line with custom input values, follow these steps:
+To run a jupyter notebook (`.ipynb`) from the command line with custom input values, follow these steps:
 
 ### 1. Register your virtual environment as a Jupyter kernel
 
@@ -51,86 +53,78 @@ papermill data_overview.ipynb data_overview.results.ipynb \
   -k iv114_venv \
   -p input "data/SN048_A121573_Rep1" \
   -p show_gene "FAM41C"
----
-
 ```
 ## Quality Control
-**Quality Control (QC)** ensures that only high-quality spots and reliably expressed genes are included in downstream analyses.  
-This step removes potential artifacts caused by low sequencing depth, high mitochondrial gene content, or low transcript counts.
-
+**Quality Control (QC)** ensures that only high-quality spots and reliably expressed genes are included in downstream analyses.
 ### Overview
-During this step, the dataset was loaded using **`scanpy.read_visium`**, and several quality metrics were computed to evaluate spot quality.  
-Spots and genes not meeting defined thresholds were filtered out to improve data reliability and minimize noise in spatial analyses.
+During this step, the dataset is laoded using `scanpy` library, and several quality metrics are computed to evaluate spot quality. Spots and genes not meeting defined thresholds are filtered out to improve data reliability and minimize noise in spatial analyses.
 
-The following filtering criteria were applied (default thresholds can be adjusted by the user according to dataset characteristics):
+The following filtering criteria are applied (default thresholds can be adjusted by the user according to dataset characteristics):
 
-- Spots with **total counts below 1000** were removed.  
-- Spots with **fewer than 200 detected genes** were removed.  
-- Spots with **more than 20% mitochondrial transcripts** were removed.  
-- Spots with **more than 10 estimated cells** were considered outliers and excluded.  
+- spots with **total counts below 1000**
+- spots with **fewer than 200 detected genes**
+- spots with **more than 20% mitochondrial transcripts**
+- spots with **more than 10 estimated cells**
+  - If cell count estimates were unavailable, a constant value of 8 cells per spot was assigned based on literature
 
-If no cell count information was available, a constant value of **8 cells per spot** was assigned based on literature estimates.
+were removed.
 
-After filtering, the data were **normalized and log-transformed** using the following commands:
+### Post-Filtering Steps
+- Data normalization
+- Log-transformation
 
-```python
-sc.pp.normalize_total(adata_qc, target_sum=1e6)
-sc.pp.log1p(adata_qc)
-```
-
-Several **visualizations** were generated to evaluate the filtering process, including histograms, spatial plots highlighting low-quality spots, and summary plots of discarded spots.  
-The filtered dataset was saved as:  
-`DATA_PATH/qc_filtered/adata_QC_filtered.h5ad`
-
+### Vizualizations
+- Histograms of QC metrics
+- Spatial plots marking removed and retained spots
+- Summary plots comparing pre- and post-filter datasets
 ---
 
 ## Identification of SVGs with SpatialDE
 **SpatialDE** is a statistical framework designed to identify **Spatially Variable Genes (SVGs)** — genes whose expression levels exhibit significant spatial patterns across tissue sections.
 
 ### Overview
-SpatialDE applies **Gaussian Process regression** to model gene expression as a function of spatial coordinates (x, y).  
-For each gene, it compares a **spatial model** against a **non-spatial model** and performs a **likelihood ratio test** to evaluate whether spatial variation is statistically significant.
+SpatialDE applies **Gaussian Process regression** to model gene expression as a function of spatial coordinates (x, y). For each gene, it compares a **spatial model** against a **non-spatial model** and performs a **likelihood ratio test** to evaluate whether spatial variation is statistically significant.
 
 ### Workflow
 1. **Input preparation:**  
-   QC-filtered and normalized data (`adata_QC_filtered.h5ad`) were used as input for the analysis.  
+   Use QC-filtered and normalized data.
 
 2. **Model fitting:**  
-   Each gene was fitted with both spatial and non-spatial models to assess spatial variability.  
+   Each gene is fitted with both spatial and non-spatial models to assess spatial variability.  
 
 3. **Statistical testing:**  
    SpatialDE computed *p*-values and applied **FDR correction** to identify statistically significant SVGs.  
 
 4. **Visualization:**  
-   The most significant SVGs were visualized as spatial expression maps to confirm biologically meaningful patterns.
+   The most significant SVGs are visualized as spatial expression maps to confirm biologically meaningful patterns.
 
 ### Implementation
-SpatialDE was implemented in Python using the official package available at:  
+SpatialDE is implemented in Python using the official package available at:  
 **[SpatialDE GitHub Repository](https://github.com/Teichlab/SpatialDE)**
 
 **Recommended versions:**
 - `spatialde` ≥ 1.1.3  
 - `numpy` ≥ 1.21  
-- `pandas` ≥ 1.3  
-
-It is recommended to preselect **highly variable genes** before running SpatialDE to improve computational efficiency on large datasets.
-
+- `pandas` ≥ 1.3
 ---
 
 ## Identification of SVGs with SOMDE
-**SOMDE (Self-Organizing Map for Differential Expression)** is a computational method designed to identify **spatially variable genes (SVGs)** from spatial transcriptomics data.  
-It combines **self-organizing maps (SOMs)** — an unsupervised neural network algorithm — with statistical modeling to efficiently detect genes that exhibit spatial expression patterns across tissue sections.  
+**SOMDE (Self-Organizing Map for Differential Expression)** is a computational method designed to identify **spatially variable genes (SVGs)** from spatial transcriptomics data. It combines
+- **self-organizing maps (SOMs)** — an unsupervised neural network algorithm 
+- statistical modeling 
+
+to efficiently detect genes that exhibit spatial expression patterns across tissue sections.  
 
 ### Overview
-
-SOMDE is a spatial transcriptomics analysis tool that uses Self-Organizing Maps (SOM) to detect spatially variable genes efficiently.  
 This part helps you create a reliable environment to reproduce SOMDE results with compatible package versions.
 
-Link to the SOMDE github: **[SOMDE](https://github.com/zhanglabtools/SOMDE)**
+Link to the SOMDE GitHub: [Github repositary](https://github.com/zhanglabtools/SOMDE)
+
+Link to the SOMDE paper: [Paper](https://watermark02.silverchair.com/btab471.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAA3EwggNtBgkqhkiG9w0BBwagggNeMIIDWgIBADCCA1MGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMafckB-r7m3_PMTzmAgEQgIIDJO96W9nQ58TjKtk3JCe0Pt76f48YaSU_ULgBN_nGg37fB50KLZBCXLDZfmbk11OwSVjtgcoyFQ_)
 
 ### Environment Setup Guide
 
-**Tested with:** Python **3.9**  
+**Tested with:** Python **3.8**  
 
 It is recommended to run this notebook within an isolated virtual environment to ensure all required dependencies are correctly installed and to avoid conflicts with other Python packages.
 
