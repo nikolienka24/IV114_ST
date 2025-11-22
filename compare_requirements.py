@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 import pandas as pd
 import os
+import argparse
 
-dataset = "SN048_A121573_Rep1"
+parser = argparse.ArgumentParser(description="Compare SOMDE and SpatialDE resource usage.")
+parser.add_argument("dataset", type=str, help="Dataset folder name (e.g., SN123_A938797_Rep1_X)")
+args = parser.parse_args()
+
+dataset = args.dataset
+print(f"Using dataset: {dataset}")
 
 # ----------------------
 # 1. Load CSV files
