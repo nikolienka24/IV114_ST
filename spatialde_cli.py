@@ -6,11 +6,6 @@ import NaiveDE
 import SpatialDE
 
 
-@click.command()
-@click.argument('expression_csv', type=click.Path(exists=True), metavar='<expression csv>')
-@click.argument('coordinate_csv', type=click.Path(exists=True), metavar='<cooridnates csv>')
-@click.argument('results_csv', type=click.Path(), metavar='<output file>')
-@click.option('--model_selection_csv', type=click.Path(), default=None)
 def main(expression_csv, coordinate_csv, results_csv, model_selection_csv):
     ''' Perform SpatialDE test on data in input files.
 
@@ -37,10 +32,23 @@ def main(expression_csv, coordinate_csv, results_csv, model_selection_csv):
 
     df = df.loc[sample_info.index]
     X = sample_info[['x', 'y']]
+    
+    print("Min / max v df:", df.values.min(), df.values.max())
+    print("Jsou v df nějaké NaNy?", np.isnan(df.values).any())
 
     # Convert data to log-scale, and account for depth
     dfm = NaiveDE.stabilize(df.T).T
+    
+    print("Min / max v dfm:", dfm.values.min(), dfm.values.max())
+    print("Jsou v dfm NaNy?", np.isnan(dfm.values).any())
+    
     res = NaiveDE.regress_out(sample_info, dfm.T, 'np.log(total_counts)').T
+    
+    # ---------- SAVE res TO CSV (NEW) ----------
+    res_csv = results_csv.replace("results.csv", "res.normalized.csv")  # use same folder
+    print(f"Saving res to: {res_csv}")
+    res.to_csv(res_csv)   # <-- NEW
+    # --------------------------------------------
 
     # Perform Spatial DE test with default settings
     results = SpatialDE.run(X, res)
@@ -57,4 +65,13 @@ def main(expression_csv, coordinate_csv, results_csv, model_selection_csv):
     ms_results.to_csv(model_selection_csv)
 
     return results, ms_results
+
+
+if __name__ == "__main__":
+    main(
+        expression_csv="data_after_qc/SN048_A121573_Rep1/count.not_normalized.csv",
+        coordinate_csv="data_after_qc/SN048_A121573_Rep1/idx.not_normalized.csv",
+        results_csv="data_after_qc/SN048_A121573_Rep1/results_spatialDE/results.csv"
+    )
+
 
