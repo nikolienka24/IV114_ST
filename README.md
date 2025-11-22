@@ -120,7 +120,7 @@ This part helps you create a reliable environment to reproduce SOMDE results wit
 
 Link to the SOMDE GitHub: [Github repositary](https://github.com/zhanglabtools/SOMDE)
 
-Link to the SOMDE paper: [Paper](https://watermark02.silverchair.com/btab471.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAA3EwggNtBgkqhkiG9w0BBwagggNeMIIDWgIBADCCA1MGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMafckB-r7m3_PMTzmAgEQgIIDJO96W9nQ58TjKtk3JCe0Pt76f48YaSU_ULgBN_nGg37fB50KLZBCXLDZfmbk11OwSVjtgcoyFQ_)
+Link to the SOMDE paper: [Paper](https://academic.oup.com/bioinformatics/article/37/23/4392/6308937)
 
 ### Environment Setup Guide
 
