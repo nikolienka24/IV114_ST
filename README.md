@@ -143,3 +143,19 @@ Alternatively, you can configure your **conda** virtual environment with the pro
 ```bash
 conda env create -f somde_x86.yml
 ```
+
+## Final analysis
+**Scripts for requirements comparison**
+- `compare_requirements.py` - normalizes and aggregates resource usage data across multiple systems and machines
+- `requirements_comparison_statistics.py` - computes summary statistics across multiple datasets
+- 
+**Notebooks**
+1. vizualization - FSV scatter plots, qval scatter plots, meta-expression heatmaps per SOM node 
+   - `SOMDE_vizualizations.ipynb` - visualizes SOMDE results
+   - `SpatialDE_visual.ipynb` - visualizes SpatialDE results
+2. Method comparison - compares SOMDE and SpatialDE results
+   - `method_comparison.ipynb`
+   - scatter plots of FSV and q-values for both methods
+   - highlighting method-specific, overlapping, and non-detected genes
+   - Venn diagrams of significant gene overlap
+   - resource usage comparison plots
