@@ -54,7 +54,7 @@ if 'CPU_usage_percent' not in method2.columns:
 # 4. Aggregate SOMDE tasks
 # ----------------------
 somde_summary = pd.DataFrame({
-    'Task': ['SOMDE_total'],
+    'Task': ['SOMDE node initialization + SOMDE analysis'],
     'CPU_time': [method1['CPU_time'].sum()],
     'Wall_time': [method1['Wall_time'].sum()],
     'RAM_used_MB': [method1['RAM_used_MB'].sum()],
