@@ -13,7 +13,7 @@ Input folder needs to contains 2 CSVs with following structure:
   requirements.csv: CPU_time, Wall_time, RAM_used_MB, CPU_usage_percent
   system_info.csv: Total_RAM_GB, CPU_cores
 
-Output: method_comparison/<dataset>/requirements_comparison.csv
+Output: method_comparison/<folder_name>/requirements_comparison.csv
 """
 
 # ----------------------
