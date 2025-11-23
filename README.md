@@ -145,10 +145,11 @@ conda env create -f somde_x86.yml
 ```
 
 ## Final analysis
-**Scripts for requirements comparison**
-- `compare_requirements.py` - normalizes and aggregates resource usage data across multiple systems and machines
-- `requirements_comparison_statistics.py` - computes summary statistics across multiple datasets
-- 
+**Scripts for requirements comparison** - contains documentation in the beginning og python file
+- `compare_resources.py` - normalizes and aggregates resource usage data across multiple systems and machines
+- `compare_resources.all_datasets.py` - computes summary statistics across multiple datasets
+- `make_venn_statistics.py`
+
 **Notebooks**
 1. vizualization - FSV scatter plots, qval scatter plots, meta-expression heatmaps per SOM node 
    - `SOMDE_vizualizations.ipynb` - visualizes SOMDE results
