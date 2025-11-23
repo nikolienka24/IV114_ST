@@ -1,19 +1,31 @@
 import os
 import pandas as pd
 
+"""
+Aggregate resource usage statistics across all datasets.
+
+Scans subdirectories in method_comparison/ for requirements_comparison.csv files,
+combines them, and computes statistics (mean, min, max) grouped by task.
+
+Input CSV structure (from requirements_comparison.csv):
+  Task, CPU_time, Wall_time, CPU_usage_percent, RAM_used_MB, CPU_efficiency, RAM_efficiency, System
+
+Output: statistics_all_datasets/combined_statistics.requirements.by_task.csv
+"""
+
 # -------------------------------
 # Parameters
 # -------------------------------
 root_folder = "method_comparison/"  # Change to your folder
-output_folder = "statistics_requirements/"
+output_folder = "statistics_all_datasets/"
 
 # Ensure output folder exists
 os.makedirs(output_folder, exist_ok=True)
 
-task_stats_csv = os.path.join(output_folder, "combined_statistics_by_task.csv")
+task_stats_csv = os.path.join(output_folder, "combined_statistics.requirements.by_task.csv")
 
 # -------------------------------
-# Step 1: Collect all CSVs
+# Step 1: Collect all_requirements CSVs
 # -------------------------------
 all_dfs = []
 
@@ -29,7 +41,7 @@ for subdir, dirs, files in os.walk(root_folder):
 if not all_dfs:
     raise FileNotFoundError("No 'requirements_comparison.csv' files found in subfolders.")
 
-# Combine all data
+# Combine all_requirements data
 combined_df = pd.concat(all_dfs, ignore_index=True)
 print(f"Collected {len(combined_df)} rows from {len(all_dfs)} files.")
 
