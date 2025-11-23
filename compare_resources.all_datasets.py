@@ -1,6 +1,4 @@
-import os
-import pandas as pd
-
+#!/usr/bin/env python3
 """
 Aggregate resource usage statistics across all datasets.
 
@@ -8,10 +6,15 @@ Scans subdirectories in method_comparison/ for requirements_comparison.csv files
 combines them, and computes statistics (mean, min, max) grouped by task.
 
 Input CSV structure (from requirements_comparison.csv):
-  Task, CPU_time, Wall_time, CPU_usage_percent, RAM_used_MB, CPU_efficiency, RAM_efficiency, System
+  Task, CPU_time, CPU_time_normalized, Wall_time, Wall_time_normalized, CPU_usage_percent,
+  RAM_used_MB, RAM_used_normalized_MB, RAM_percent, CPU_efficiency, RAM_efficiency,
+  System, CPU_cores, Total_RAM_GB
 
 Output: statistics_all_datasets/combined_statistics.requirements.by_task.csv
 """
+
+import os
+import pandas as pd
 
 # -------------------------------
 # Parameters
@@ -46,13 +49,17 @@ combined_df = pd.concat(all_dfs, ignore_index=True)
 print(f"Collected {len(combined_df)} rows from {len(all_dfs)} files.")
 
 # -------------------------------
-# Step 2: Define aggregation (skip std to avoid nulls if single row)
+# Step 2: Define aggregation for normalized and original metrics
 # -------------------------------
 agg_dict = {
     "CPU_time": ["mean", "min", "max"],
+    "CPU_time_normalized": ["mean", "min", "max"],
     "Wall_time": ["mean", "min", "max"],
+    "Wall_time_normalized": ["mean", "min", "max"],
     "CPU_usage_percent": ["mean", "min", "max"],
     "RAM_used_MB": ["mean", "min", "max"],
+    "RAM_used_normalized_MB": ["mean", "min", "max"],
+    "RAM_percent": ["mean", "min", "max"],
     "CPU_efficiency": ["mean", "min", "max"],
     "RAM_efficiency": ["mean", "min", "max"]
 }

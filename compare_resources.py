@@ -69,10 +69,11 @@ spatialde_cpu_norm_factor = reference_cores / spatialde_cores
 somde_summary = pd.DataFrame({
     'Task': ['SOMDE node initialization + analysis'],
     'CPU_time': [method1['CPU_time'].sum()],
+    'CPU_time_normalized': [method1['CPU_time'].sum() * somde_cpu_norm_factor],  # Normalized to 8 cores
     'Wall_time': [method1['Wall_time'].sum()],
+    'Wall_time_normalized': [method1['Wall_time'].sum() * somde_cpu_norm_factor],  # Normalized to 8 cores
     'RAM_used_MB': [method1['RAM_used_MB'].max()],  # peak RAM
     'RAM_used_normalized_MB': [method1['RAM_used_MB'].max() * somde_ram_norm_factor],  # Normalized to 8GB system
-    'Wall_time_normalized': [method1['Wall_time'].sum() * somde_cpu_norm_factor],  # Normalized to 8 cores
 })
 
 # ----------------------
@@ -92,8 +93,9 @@ somde_summary['Total_RAM_GB'] = somde_ram_gb
 if 'CPU_usage_percent' not in method2.columns:
     method2['CPU_usage_percent'] = (method2['CPU_time'] / method2['Wall_time']) * 100
 
-method2['RAM_used_normalized_MB'] = method2['RAM_used_MB'] * spatialde_ram_norm_factor
+method2['CPU_time_normalized'] = method2['CPU_time'] * spatialde_cpu_norm_factor
 method2['Wall_time_normalized'] = method2['Wall_time'] * spatialde_cpu_norm_factor
+method2['RAM_used_normalized_MB'] = method2['RAM_used_MB'] * spatialde_ram_norm_factor
 method2['CPU_efficiency'] = method2['CPU_time'] / (spatialde_cores * method2['Wall_time'])
 method2['RAM_efficiency'] = method2['RAM_used_MB'] / (spatialde_ram_gb * 1024)
 method2['RAM_percent'] = (method2['RAM_used_MB'] / (spatialde_ram_gb * 1024)) * 100
@@ -104,10 +106,9 @@ method2['Total_RAM_GB'] = spatialde_ram_gb
 # ----------------------
 # 7. Combine for comparison
 # ----------------------
-cols = ['Task', 'CPU_time', 'Wall_time', 'Wall_time_normalized', 'CPU_usage_percent',
-        'RAM_used_MB', 'RAM_used_normalized_MB', 'RAM_percent',
-        'CPU_efficiency', 'RAM_efficiency',
-        'System', 'CPU_cores', 'Total_RAM_GB']
+cols = ['Task', 'CPU_time', 'CPU_time_normalized', 'Wall_time', 'Wall_time_normalized',
+        'CPU_usage_percent', 'RAM_used_MB', 'RAM_used_normalized_MB', 'RAM_percent',
+        'CPU_efficiency', 'RAM_efficiency', 'System', 'CPU_cores', 'Total_RAM_GB']
 
 comparison = pd.concat([somde_summary[cols], method2[cols]], ignore_index=True)
 
@@ -123,23 +124,3 @@ output_file = f"{output_dir}/requirements_comparison.csv"
 comparison.to_csv(output_file, index=False)
 
 print(f"\n✓ Comparison saved to {output_file}")
-
-# ----------------------
-# 9. Print normalized summary
-# ----------------------
-print("\n===== Normalized Comparison (8GB RAM, 8 CPU cores reference) =====")
-print(f"\nWall Time Normalized (seconds on 8-core system):")
-for _, row in comparison.iterrows():
-    print(f"  {row['Task']}: {row['Wall_time_normalized']:.2f} sec ({row['Wall_time_normalized']/60:.2f} min)")
-
-print(f"\nRAM Usage Normalized (MB on 8GB system):")
-for _, row in comparison.iterrows():
-    print(f"  {row['Task']}: {row['RAM_used_normalized_MB']:.2f} MB ({row['RAM_used_normalized_MB']/1024:.2f} GB)")
-
-print(f"\nRAM Usage (as % of available RAM):")
-for _, row in comparison.iterrows():
-    print(f"  {row['Task']}: {row['RAM_percent']:.2f}%")
-
-print(f"\nCPU Efficiency (ratio of CPU time to available CPU*wall time, 1.0 = perfect):")
-for _, row in comparison.iterrows():
-    print(f"  {row['Task']}: {row['CPU_efficiency']:.3f}")
