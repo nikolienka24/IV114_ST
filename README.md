@@ -1,4 +1,5 @@
 # IV114 Spatial Transcriptomics Project
+**Analysis of Spatial Transcriptomics data and identification of Spatially Variable Genes (SVGs)**
 **Work completed for the IV114 course at FI MUNI — Fall Semester 2025**
 
 ## Introduction
@@ -97,6 +98,10 @@ SpatialDE applies **Gaussian Process regression** to model gene expression as a 
 
 4. **Visualization:**  
    The most significant SVGs are visualized as spatial expression maps to confirm biologically meaningful patterns.
+
+**Outputs:**
+res.csv, results.csv, sample_info.csv
+These files contain per-gene statistics used later for manual SVG evaluation.
 
 ### Implementation
 SpatialDE is implemented in Python using the official package available at:  
