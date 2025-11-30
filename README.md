@@ -88,7 +88,7 @@ SpatialDE applies **Gaussian Process regression** to model gene expression as a 
 
 ### Workflow
 1. **Input preparation:**  
-   Use QC-filtered and normalized data.
+   Use QC-filtered data.
 
 2. **Model fitting:**  
    Each gene is fitted with both spatial and non-spatial models to assess spatial variability.  
@@ -148,6 +148,19 @@ Alternatively, you can configure your **conda** virtual environment with the pro
 ```bash
 conda env create -f somde_x86.yml
 ```
+
+## Manual Identification of TRUE vs FALSE SVGs
+Notebook: Identification_of_SVGs.ipynb
+Purpose:
+This notebook helps users manually inspect SVG candidates using volcano plots, spatial expression maps, and key statistical metrics (FSV, q-value, LLR, fraction_expressing, etc.).
+
+Why we included this step:
+During our analysis we found that relying only on q-value and FSV often led to false-positive SVGs – genes that were statistically significant but showed no meaningful spatial pattern.
+Therefore, a manual inspection step is needed to:
+- visually identify true vs false SVGs
+- compare statistical metrics across genes
+- determine which variables are most reliable for filtering false positives
+This enables users to build more robust and biologically meaningful SVG selection criteria.
 
 ## Final analysis
 **Scripts for requirements comparison** - contains documentation in the beginning og python file
