@@ -151,6 +151,7 @@ conda env create -f somde_x86.yml
 
 ## Manual Identification of TRUE vs FALSE SVGs
 Notebook: Identification_of_SVGs.ipynb
+
 Purpose:
 This notebook helps users manually inspect SVG candidates using volcano plots, spatial expression maps, and key statistical metrics (FSV, q-value, LLR, fraction_expressing, etc.).
 
