@@ -107,10 +107,15 @@ These files contain per-gene statistics used later for manual SVG evaluation.
 SpatialDE is implemented in Python using the official package available at:  
 **[SpatialDE GitHub Repository](https://github.com/Teichlab/SpatialDE)**
 
-**Recommended versions:**
-- `spatialde` ≥ 1.1.3  
+**Recommended versions and libraries:**
+- `spatialde` = 1.1.3
+- `NaiveDE` = 1.2.0  
 - `numpy` ≥ 1.21  
-- `pandas` ≥ 1.3
+- `pandas` = 1.5.3
+- `matplotlib`
+- `ipywidgets`
+- `psutil`
+- `patsy`
 ---
 
 ## Identification of SVGs with SOMDE
