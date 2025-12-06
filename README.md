@@ -117,6 +117,11 @@ SpatialDE is implemented in Python using the official package available at:
 - `psutil`
 - `patsy`
 ---
+Alternatively, you can configure your **conda** virtual environment with the provided `spatialde_py39.yml` file:
+
+```bash
+conda env create -f spatialde_py39.yml
+```
 
 ## Identification of SVGs with SOMDE
 **SOMDE (Self-Organizing Map for Differential Expression)** is a computational method designed to identify **spatially variable genes (SVGs)** from spatial transcriptomics data. It combines
