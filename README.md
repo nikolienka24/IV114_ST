@@ -17,7 +17,7 @@ In this project, we implement a full analysis workflow that includes:
 2. **Quality Control (QC)** + filtering out low-quality spots (Python >3.11 is required)
 3. **SOMDE** — applying *Self-Organizing Map for Differential Expression* to efficiently identify spatially variable genes. (Please refer to the *SOMDE Analysis* section for proper virtual environment setup.)
 4. **SpatialDE** — performing statistical modeling to detect to efficiently identify spatially variable genes.
-5. **Tumor vs Non-Tumor SVG Comparison** - subset of analysis comparing spatially variable genes in tumor and non-tumor datasets.
+5. **Additional analysis: Tumor vs Non-Tumor SVG Comparison** - subset of analysis comparing spatially variable genes in tumor and non-tumor datasets.
 
 ---
 
