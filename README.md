@@ -17,6 +17,7 @@ In this project, we implement a full analysis workflow that includes:
 2. **Quality Control (QC)** + filtering out low-quality spots (Python >3.11 is required)
 3. **SOMDE** — applying *Self-Organizing Map for Differential Expression* to efficiently identify spatially variable genes. (Please refer to the *SOMDE Analysis* section for proper virtual environment setup.)
 4. **SpatialDE** — performing statistical modeling to detect to efficiently identify spatially variable genes.
+5. **Tumor vs Non-Tumor SVG Comparison** - subset of analysis comparing spatially variable genes in tumor and non-tumor datasets.
 
 ---
 
@@ -189,3 +190,19 @@ This enables users to build more robust and biologically meaningful SVG selectio
    - highlighting method-specific, overlapping, and non-detected genes
    - Venn diagrams of significant gene overlap
    - resource usage comparison plots
+
+## Additional analysis: Tumor vs Non-Tumor SVG Comparison
+
+This part of the analysis compares tumor and non-tumor samples using SOMDE results:
+- **Objective**: Identify spatially variable genes (SVGs) that are shared between tumor replicates, unique to tumor, or unique to non-tumor tissue.
+- **Methods**:
+  - Filter genes based on q-value < 0.05 and LLR > 1
+  - Visualize overlaps using Venn diagrams and gene counts via bar plots
+  - Assess similarity between tumor and non-tumor for shared genes using Spearman correlation on q-values and LLR
+
+**Key observations**:
+- q-values are strongly correlated between tumor and non-tumor samples, indicating consistent statistical significance
+- LLR values are moderately correlated, showing differences in the strength of spatial variability
+- Provides insight into genes with tumor-specific spatial patterns versus those conserved across tissue conditions
+
+**Notebook**: comparison_tumorVSnontumor.ipynb contains the full pipeline for this comparison.
